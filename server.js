@@ -7,10 +7,14 @@ var express =           require('express')
     , methodOverride =  require('method-override')
     , cookieParser =    require('cookie-parser')
     , cookieSession =   require('cookie-session')
+    , mongoose      =   require('mongoose')
+    , database      =   require('./server/config/database.js')
     , session =         require('express-session')
     , csrf =            require('csurf')
     , User =            require('./server/models/User.js');
 
+mongoose.connect(database.url); //Realiza la conexion con mongodb
+console.log("Database Connected ");
 var app = module.exports = express();
 
 app.set('views', __dirname + '/client/views');
@@ -49,7 +53,7 @@ passport.deserializeUser(User.deserializeUser);
 
 require('./server/routes.js')(app);
 
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 9000);
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
 });

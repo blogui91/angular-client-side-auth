@@ -3,6 +3,9 @@ var _ =           require('underscore')
     , passport =  require('passport')
     , AuthCtrl =  require('./controllers/auth')
     , UserCtrl =  require('./controllers/user')
+    , categoryCtrl = require('./controllers/categoryCtrl')
+    , productCtrl = require('./controllers/productCtrl')
+    , providerCtrl = require('./controllers/providerCtrl')
     , User =      require('./models/User.js')
     , userRoles = require('../client/js/routingConfig').userRoles
     , accessLevels = require('../client/js/routingConfig').accessLevels;
@@ -98,7 +101,48 @@ var routes = [
         accessLevel: accessLevels.admin
     },
 
-    // All other get requests should be handled by AngularJS's client-side routing system
+    // CATEGORIAS
+    {
+        path: '/getcategorias',
+        httpMethod: 'GET',
+        middleware: [categoryCtrl.getCategories]
+    },
+    {
+        path: '/findCategoria',
+        httpMethod: 'POST',
+        middleware: [categoryCtrl.findByID]
+    },
+    {
+        path: '/addCategoria',
+        httpMethod: 'POST',
+        middleware: [categoryCtrl.addCategory]
+    },
+   
+
+    // PROVEEDORES
+    {
+        path: '/getProveedores',
+        httpMethod: 'GET',
+        middleware: [providerCtrl.getProviders]
+    },
+    {
+        path: '/findProveedores',
+        httpMethod: 'POST',
+        middleware: [providerCtrl.findById]
+    },
+    {
+        path: '/addProveedores',
+        httpMethod: 'POST',
+        middleware: [providerCtrl.addProvider]
+    },
+    {
+        path: '/deleteProveedores',
+        httpMethod: 'POST',
+        middleware: [providerCtrl.deleteProvider]
+    },
+   
+
+// All other get requests should be handled by AngularJS's client-side routing system
     {
         path: '/*',
         httpMethod: 'GET',

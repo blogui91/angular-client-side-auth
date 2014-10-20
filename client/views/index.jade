@@ -2,10 +2,24 @@ doctype html
 html(lang='en', data-ng-app='angular-client-side-auth')
     head
         meta(charset='utf-8')
-        title Angular Auth Example
+        meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+        title Panadería Corahui
         link(rel='stylesheet', href='/css/app.css')
+        link( href="/css/font-awesome.min.css", rel="stylesheet" )
+        link( href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600", rel="stylesheet" )
         link(href="/components/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
         link(href="/components/font-awesome/css/font-awesome.min.css", rel="stylesheet")
+
+
+        <!-- Custom CSS -->
+        link(href="/css/template/css/sb-admin.css" rel="stylesheet")
+
+        <!-- Morris Charts CSS -->
+        link(href="/css/template/css/plugins/morris.css" rel="stylesheet")
+
+        <!-- Custom Fonts -->
+        link(href="/css/template/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css")
+
 
         // This is needed because Facebook login redirects add #_=_ at the end of the URL
         script(type="text/javascript").
@@ -13,35 +27,17 @@ html(lang='en', data-ng-app='angular-client-side-auth')
                 window.location = window.location.href.replace(/#.*/, '');
             }
     body(data-ng-cloak)
+        include ./partials/header.jade
 
-        .navbar(data-ng-controller="NavCtrl")
-            .navbar-inner
-                .container-fluid
-                    ul.nav.nav-tabs
-                        li(data-access-level='accessLevels.anon', active-nav)
-                            a(href='/login') Log in
-                        li(data-access-level='accessLevels.anon', active-nav)
-                            a(href='/register') Register
-                        li(data-access-level='accessLevels.user', active-nav)
-                            a(href='/') Home
-                        li(data-access-level='accessLevels.user', active-nav='nestedTop')
-                            a(href='/private') Private
-                        li(data-access-level='accessLevels.admin', active-nav)
-                            a(href='/admin') Admin
-                        li(data-access-level='accessLevels.user')
-                            a(href="", data-ng-click="logout()")
-                                | Log out
-                        div#userInfo.pull-right(data-access-level='accessLevels.user')
-                            | Welcome&nbsp;
-                            strong {{ user.username }}&nbsp;
-                            span.label(data-ng-class='{"label-info": user.role.title == userRoles.user.title, "label-success": user.role.title == userRoles.admin.title}') {{ user.role.title }}
 
-        .container(data-ui-view)
-        #alertBox.alert.alert-danger(data-ng-show="error")
+        div(data-ui-view style="margin-top:-4em;")
+        #alertBox.alert.alert-info(data-ng-show="error")
             button(type="button", class="close", data-ng-click="error = null;") &times;
-            strong Oh no!&nbsp;
+            strong Aviso &nbsp;
             span(data-ng-bind="error")
 
+        script(src='/css/template/js/jquery-1.11.0.js')
+        script(src='/css/template/js/bootstrap.min.js')
         script(src='/components/angular/angular.min.js')
         script(src='/components/angular-cookies/angular-cookies.min.js')
         script(src='/components/angular-ui-router/release/angular-ui-router.min.js')
@@ -51,23 +47,49 @@ html(lang='en', data-ng-app='angular-client-side-auth')
         script(src='/js/controllers.js')
         script(src='/js/filters.js')
         script(src='/js/directives.js')
+        script(src="/css/template/js/plugins/morris/raphael.min.js")
+        script(src="/css/template/js/plugins/morris/morris.min.js")
+        script(src="/css/template/js/plugins/morris/morris-data.js")
 
         // Partial views... Load up front to make transitions smoother
         script(type="text/ng-template", id="404")
             include partials/404
+        
         script(type="text/ng-template", id="admin")
             include partials/admin
+        
         script(type="text/ng-template", id="home")
             include partials/home
+        
         script(type="text/ng-template", id="login")
             include partials/login
+        
         script(type="text/ng-template", id="private/layout")
             include partials/private/layout
+        
         script(type="text/ng-template", id="private/home")
             include partials/private/home
+        
         script(type="text/ng-template", id="private/nested")
             include partials/private/nested
+        
         script(type="text/ng-template", id="private/nestedAdmin")
             include partials/private/nestedAdmin
+        
         script(type="text/ng-template", id="register")
             include partials/register
+        
+        script(type="text/ng-template", id="private/inventario/agregar-categoria")
+            include partials/private/inventario/agregar-categoria
+        
+        script(type="text/ng-template", id="private/inventario/agregar-inventario")
+            include partials/private/inventario/agregar-inventario
+        
+        script(type="text/ng-template", id="private/inventario/agregar-producto")
+            include partials/private/inventario/agregar-producto
+        
+        script(type="text/ng-template", id="private/inventario/agregar-proveedor")
+            include partials/private/inventario/agregar-proveedor
+        
+        script(type="text/ng-template", id="private/inventario/nueva-salida")
+            include partials/private/inventario/nueva-salida

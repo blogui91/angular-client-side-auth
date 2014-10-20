@@ -1,0 +1,93 @@
+.jumbotron
+
+  h2
+    | Nuevo proveedor
+  hr
+  form(role="form")
+    .row
+      .col-lg-2.col-md-2
+      .col-lg-2.col-md-2.col-sm-6
+        .form-group
+          label(for="inputID") ID Proveedor
+          input.form-control(type="text" id="inputID" ng-model="inputIDProveedor" placeholder="ID Proveedor")
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          label(for="inputNombre") Nombre
+          input.form-control(type="text" id="inputNombre"  ng-model="inputNombreProveedor" placeholder="Nombre Proveedor")
+      .col-lg-2.col-lg-2
+
+    .row
+      .col-lg-2.col-md-2
+      .col-lg-6.col-md-4.col-sm-6
+        .form-group
+          label(for="inputDireccion") Dirección
+          input.form-control(type="text" id="inputDireccion"  ng-model="inputDireccionProveedor" placeholder="Direccion")
+      .col-lg-2.col-md-4.col-sm-5
+        .form-group
+          label(for="inputTel") Telefono
+          input.form-control(type="tel" id="inputTel"  ng-model="inputTelefonoProveedor" placeholder="(999)-999999")
+      .col-lg-2.col-md-2
+    .row
+      .col-lg-2.col-md-2
+      .col-lg-3.col-md-3.col-sm-4
+        .form-group
+          label(for="inputRFC") RFC
+          input.form-control(type="text" id="inputRFC"  ng-model="inputRFCProveedor" placeholder="RFC")
+      .col-lg-2
+    .row
+      .col-lg-2.col-md-2
+      .col-lg-8.col-md-8.col-sm-11
+        .form-group
+          label(for="inputNotas") Notas
+          textarea.form-control(type="tel" id="inputNotas"  ng-model="inputNotasProveedor" placeholder="Escribe una nota")
+      .col-lg-2
+  hr
+  .span-footer
+      span.pd-1em
+        button.btn.btn-success(ng-click="addProvider()") Guardar
+
+      span.pd-1em
+        button.btn.btn-danger Borrar
+
+      span.pd-1em.btn-atras(style="margin-top:1em;")
+        a.btn.btn-info(href="/")
+          i.glyphicon.glyphicon-chevron-left Atrás
+
+  hr
+  h3
+    |Lista de proveedores
+  .row
+    .col-lg-2.col-md-2.col-sm-2
+    .col-lg-8.col-md-8.col-sm-8
+      table.table.table-bordered.table-highlight
+        thead.btn-success
+          td Acciones
+          td ID
+          td Nombre
+          td Direccion
+          td Telefono
+          td RFC
+          
+        tbody.table-striped
+          tr(ng-repeat="lista in providerList | filter:providerNumber") 
+            td(style="align:center;")
+                button.btn.btn-danger.btn-xs( ng-click="removeElement($index)") Eliminar
+                hr.hr 
+                button.btn.btn-info.btn-xs() Editar
+                  
+            td {{lista.providerNumber}}
+            td {{lista.provider_name}}
+            td {{lista.provider_address}}
+            td {{lista.telephone}}
+            td {{lista.provider_rfc}}
+            
+    .col-lg-2.col-md-2.col-sm-2
+  .divEliminar
+    h3
+      | Elementos a eliminar
+    ul(ng-repeat="lista in listToDelete")
+      li {{lista.providerNumber}} - {{lista.provider_name}} 
+        a.btn.btn-warning.btn-xs(ng-click="restoreElement($index)" href="")  Cancelar
+      
+
+    button.btn.btn-danger.glyphicon.glyphicon-trash(confirmed-click="removeElements()" ng-confirm-click="¿Realmente deseas eliminar los registros?")  Eliminar

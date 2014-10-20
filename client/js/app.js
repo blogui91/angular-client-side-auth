@@ -49,9 +49,36 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
                 access: access.user
             }
         })
+
+
         .state('user.home', {
             url: '/',
             templateUrl: 'home'
+        })
+        .state('user.categoria', {
+            url: '/agregar-categoria/',
+            templateUrl: 'private/inventario/agregar-categoria',
+            controller: 'CategoryCtrl'
+        })
+        .state('user.agregar-inventario', {
+            url: '/agregar-inventario/',
+            templateUrl: 'private/inventario/agregar-inventario',
+            controller: 'AgregarInventarioCtrl'
+        })
+        .state('user.agregar-producto', {
+            url: '/agregar-producto/',
+            templateUrl: 'private/inventario/agregar-producto',
+            controller: 'AgregarProductoCtrl'
+        })
+        .state('user.agregar-proveedor', {
+            url: '/agregar-proveedor/',
+            templateUrl: 'private/inventario/agregar-proveedor',
+            controller: 'ProveedorCtrl'
+        })
+        .state('user.nueva-salida', {
+            url: '/nueva-salida/',
+            templateUrl: 'private/inventario/nueva-salida',
+            controller: 'OutputCtrl'
         })
         .state('user.private', {
             abstract: true,
@@ -59,9 +86,10 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
             templateUrl: 'private/layout'
         })
         .state('user.private.home', {
-            url: '',
+            url: '/',
             templateUrl: 'private/home'
         })
+
         .state('user.private.nested', {
             url: 'nested/',
             templateUrl: 'private/nested'
@@ -123,6 +151,9 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
 
     $locationProvider.html5Mode(true);
 
+
+
+
     $httpProvider.interceptors.push(function($q, $location) {
         return {
             'responseError': function(response) {
@@ -134,18 +165,25 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
         };
     });
 
+
+    $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+    });
+
+    
 }])
 
 .run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        
+
         if(!('data' in toState) || !('access' in toState.data)){
             $rootScope.error = "Access undefined for this state";
             event.preventDefault();
         }
         else if (!Auth.authorize(toState.data.access)) {
-            $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
+            $rootScope.error = "Parece que trataste de acceder a una ruta que no tienes acceso...";
             event.preventDefault();
 
             if(fromState.url === '^') {
@@ -159,4 +197,6 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
         }
     });
 
-}]);
+}])
+
+

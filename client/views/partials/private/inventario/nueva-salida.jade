@@ -1,0 +1,45 @@
+.jumbotron
+  h2
+    | Nueva Salida
+  hr
+  form(role="form")
+    .row
+      .col-lg-3
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          label(for="inputFechaSalida") Fecha de salida
+          input.form-control(type="date" disabled id="inputFechaSalida")
+      .col-lg-3.col-md-6.col-sm-6
+
+    .row
+      .col-lg-3
+      .col-lg-3.col-md-6.col-sm-6
+        .form-group
+          label(for="inputNombreProducto") ID Producto
+          select.form-control(id="inputNombreProducto")
+            option(value="Elige")
+      .col-lg-3.col-md-6.col-sm-6
+        .form-group
+          label(for="inputNombreProducto") Unidades/KG
+          input.form-control(type="number" id="inputNombreProducto" min="0" step="1")
+      .col-lg-3
+    .row
+      .col-lg-3
+      .col-lg-3.col-sm-12.col-xs-12
+        a.btn.btn-warning.glyphicon.glyphicon-plus-sign  Agregar
+      .col-lg-3
+    h3 Lista de material
+    ul
+      li 13 unidades de harina.
+      li 3 unidades de azucar.
+  hr
+  .span-footer
+      span.pd-1em
+        button.btn.btn-success Guardar
+
+      span.pd-1em
+        button.btn.btn-danger Borrar
+
+      span.pd-1em.btn-atras(style="margin-top:1em;")
+        a.btn.btn-info(href="/")
+          i.glyphicon.glyphicon-chevron-left Atrás

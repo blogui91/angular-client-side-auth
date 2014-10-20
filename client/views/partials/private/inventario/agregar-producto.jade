@@ -1,0 +1,45 @@
+
+.jumbotron
+
+  h2
+    | Agregar nuevo producto
+  form(role="form")
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          label(for="inputID") ID Producto
+          input.form-control(type="text" id="inputID" placeholder="ID Producto")
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          label(for="inputID") Precio
+          input.form-control(type="number" id="inputID" step="0.5" placeholder="Precio $")
+    .row
+      .col-lg-6.col-md-6
+        .form-group
+          label(for="inputStockMin") Stock Mínimo
+          input.form-contro(type="number" id="inputStockMin")
+      .col-lg-6.col-md-6
+        .form-group
+          label(for="inputStockMax") Stock Máximo
+          input.form-contro(type="number" id="inputStockMax" )
+    .row
+      .col-lg-6.col-md-6
+        .form-group
+          label(for="inputCategoria") Categoría
+          select.form-control(id="inputCategoria")
+            option(value="Elige una categoría")
+    .row
+      .col-lg-12.col-md-12
+        .form-group
+          label(for="inputCaducidad") Descripcion
+          textarea.form-control( id="inputCaducidad")
+
+    span.pd-1em
+      button.btn.btn-success Guardar
+
+    span.pd-1em
+      button.btn.btn-danger Eliminar todo
+
+    span.pd-1em(style="margin-top:1em;")
+      a.btn.btn-info(href="/")
+        i.glyphicon.glyphicon-chevron-left Atrás

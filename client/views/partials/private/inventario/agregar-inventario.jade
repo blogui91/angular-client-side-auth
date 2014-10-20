@@ -1,0 +1,57 @@
+.jumbotron.padding
+  h2
+    | Agregar nuevo inventario
+  hr
+  form(role="form")
+    .row
+      .col-lg-2
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputID") ID Producto
+          input.form-control(type="text" id="inputID" placeholder="ID Producto")
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputID") Precio
+          input.form-control(type="number" id="inputID" step="0.01" placeholder="Precio $")
+      .col-lg-2
+    .row
+      .col-lg-2
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputStockMin") Stock Mínimo
+          input.form-control(type="number" step="1" id="inputStockMin")
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputStockMax") Stock Máximo
+          input.form-control(type="number" step="1" id="inputStockMax" )
+      .col-lg-2
+    .row
+      .col-lg-2
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputCaducidad") Caducidad
+          input.form-control(type="date" id="inputCaducidad")
+      .col-lg-4.col-md-6.col-sm-6
+        .form-group
+          label(for="inputCategoria") Categoría
+          select.form-control(id="inputCategoria")
+            option(value="Elige una categoría")
+      .col-lg-2
+    .row
+      .col-lg-2
+      .col-lg-8.col-md-12
+        .form-group
+          label(for="inputCaducidad") Descripcion
+          textarea.form-control( id="inputCaducidad")
+      .col-lg-2
+  hr
+  .span-footer
+      span.pd-1em
+        button.btn.btn-success Guardar
+
+      span.pd-1em
+        button.btn.btn-danger Borrar
+
+      span.pd-1em.btn-atras(style="margin-top:1em;")
+        a.btn.btn-info(href="/")
+          i.glyphicon.glyphicon-chevron-left Atrás

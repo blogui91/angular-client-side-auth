@@ -58,7 +58,41 @@ angular.module('angular-client-side-auth')
 .factory('Users', function($http) {
     return {
         getAll: function(success, error) {
-            $http.get('/users').success(success).error(error);
+            $http.get('/getusers').success(success).error(error);
+        }
+    };
+});
+
+
+angular.module('angular-client-side-auth')
+.factory('Categories', function($http) {
+    return {
+        getAll: function(success, error) {
+            $http.get('/getcategorias').success(success).error(error);
+        },
+        findID: function(category, success, error){
+            $http.post('/findCategoria', category).success(success).error(error);
+        },
+        create: function(category, success, error){
+            $http.post('/addCategoria', category).success(success).error(error);
+        }
+    };
+});
+
+angular.module('angular-client-side-auth')
+.factory('Providers', function($http) {
+    return {
+        getAll: function(success, error) {
+            $http.get('/getProveedores').success(success).error(error);
+        },
+        findID: function(provider, success, error){
+            $http.post('/findProveedores', provider).success(success).error(error);
+        },
+        create: function(provider, success, error){
+            $http.post('/addProveedores', provider).success(success).error(error);
+        },
+        deleteID: function(provider, success, error){
+            $http.post('/deleteProveedores', provider).success(success).error(error);
         }
     };
 });

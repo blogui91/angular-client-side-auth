@@ -1,0 +1,52 @@
+.jumbotron
+
+  h2
+    | Nuevo Categoría
+
+  hr
+  form(role="form")
+    .row
+      .col-lg-2.col-md-2
+      .col-lg-2.col-md-2.col-sm-5.col-xs-12
+        .form-group
+          label(for="inputID") ID Categoría
+          input.form-control(type="number" id="inputID" ng-model="inputIDCategoria" placeholder="ID (Opcional)")
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          label(for="inputNombre") Categoría
+          input.form-control(type="text" id="inputCategoria" ng-model="inputNombreCategoria"  placeholder="Nombre Categoría")
+      .col-lg-2.col-lg-2
+  
+  hr
+  //li{{$index+1}} | {{lista.categoryName}} | }
+  
+  .span-footer
+      span.pd-1em
+        button.btn.btn-success(ng-click="addCategoria()") Guardar
+
+      span.pd-1em
+        button.btn.btn-danger Borrar
+
+      span.pd-1em.btn-atras(style="margin-top:1em;")
+        a.btn.btn-info(href="/")
+          i.glyphicon.glyphicon-chevron-left Atrás
+  hr
+  h3
+    |Lista de Categorías
+
+  table.table.table-bordered.table-highlight
+    thead.btn-success
+      td ID
+      td Categoria
+    tbody.table-striped
+      tr(ng-repeat="lista in categoryList") 
+        td {{lista.categoryNumber}}
+        td {{lista.categoryname}}
+
+      //select(name="numero" ng-model="seleccionCategoria" ng-change="findCategorias()")
+        option(ng-repeat="lista in categoryList") {{lista.categoryNumber}}
+   
+
+
+
+  
