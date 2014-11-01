@@ -2,44 +2,116 @@
 .jumbotron
 
   h2
+    span.pd-1em.btn-atras
+      a.btn.btn-info-mobile.btn-info(href="/")
+        i.glyphicon.glyphicon-chevron-left
     | Agregar nuevo producto
+
   form(role="form")
     .row
-      .col-lg-6.col-md-6.col-sm-6
+      .col-lg-2
+      .col-lg-4.col-md-4.col-sm-4
         .form-group
-          label(for="inputID") ID Producto
-          input.form-control(type="text" id="inputID" placeholder="ID Producto")
-      .col-lg-6.col-md-6.col-sm-6
+            label(for="inputProveedor") Proveedor
+            select.form-control(id="inputProveedor" ng-model="proveedor" ng-change="getIDProvider(proveedor)")
+              option(ng-repeat="providers in providerList") {{providers.provider_name}}
+      .col-lg-6        
+    .row
+      .col-lg-2
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
+        .form-group
+          label(for="inputNombre")  Producto
+          input.form-control(type="text" id="inputNombre"  ng-model="inputNombre" placeholder="Nombre" )
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
         .form-group
           label(for="inputID") Precio
-          input.form-control(type="number" id="inputID" step="0.5" placeholder="Precio $")
+          input.form-control(type="number" id="inputPrecio" ng-model="inputPrecio" step="0.01" placeholder="Precio $")
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
+        .form-group
+          label(for="inputTipo") Tipo de Contenido
+          select.form-control(id="inputTipo" name="type_content" ng-model="type_content" ng-change="verValor()")
+            option(ng-repeat="option in tipo") {{option.name}}
+      .col-lg-1
+
     .row
-      .col-lg-6.col-md-6
+      .col-lg-2
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
         .form-group
           label(for="inputStockMin") Stock Mínimo
-          input.form-contro(type="number" id="inputStockMin")
-      .col-lg-6.col-md-6
+          input.form-control(type="number" min="1" max="200" ng-model="inputStockMin" id="inputStockMin")
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
         .form-group
           label(for="inputStockMax") Stock Máximo
-          input.form-contro(type="number" id="inputStockMax" )
-    .row
-      .col-lg-6.col-md-6
+          input.form-control(type="number" min="2" max="300" ng-model="inputStockMax" id="inputStockMax" )
+      .col-lg-3.col-md-4.col-sm-4.col-xs-6
         .form-group
-          label(for="inputCategoria") Categoría
-          select.form-control(id="inputCategoria")
-            option(value="Elige una categoría")
+          label(for="inputExistencias") Inicializar Existencias
+          input.form-control(type="number" min="1" ng-model="inputExistencias" id="inputExistencias")
+      .col-lg-1
+    
     .row
-      .col-lg-12.col-md-12
-        .form-group
-          label(for="inputCaducidad") Descripcion
-          textarea.form-control( id="inputCaducidad")
+      .col-lg-2
+      .col-lg-4.col-md-5.col-sm-5
+        .controles
+          span.pd-1em
+            button.btn.btn-success(ng-click="addProduct()")
+              i.glyphicon.glyphicon-floppy-disk
+                | Guardar
 
-    span.pd-1em
-      button.btn.btn-success Guardar
+          span.pd-1em
+            button.btn.btn-danger(type="reset")
+              i.glyphicon.glyphicon-refresh
+                | Reset
+          
+      .col-lg-1
+  
+  hr
+  h3
+    |Lista de proveedores
+  .row
+    .col-lg-2.col-md-2.col-sm-2
+    .col-lg-8.col-md-8.col-sm-8
+      table.table.table-bordered.table-products
+        thead.btn-success
+          td Acciones
+          td ID
+          td Nombre
+          td Precio
+          td S/Min
+          td S/Max
+          td T/Contenido
+          td Existencias
+          td Proveedor
+          
+        tbody.table-striped
+          tr(ng-repeat="lista in productList") 
+            td(style="text-align:center;")
+                button.btn.btn-danger.btn-xs(ng-click="removeElement($index)")
+                  | Eliminar
+                hr.hr 
+                button.btn.btn-primary.btn-xs(ng-click="editProduct($index)")
+                  | Editar
+                  
+            td {{lista._id}}
+            td {{lista.product_name}}
+            td {{lista.product_price | currency}}
+            td {{lista.product_stock_min}}
+            td {{lista.product_stock_max}}
+            td {{lista.product_type_content}}
+            td {{lista.product_units}}
+            td 
+              ul.list-elements(ng-repeat="provider in lista.provider_id")
+               li {{provider._id}} <br> {{provider.provider_name}}
+            
+    .col-lg-2.col-md-2.col-sm-2
+  .divEliminar(data-ng-show="!listaEliminadosVacia")
+    h3
+      | Elementos a eliminar
+    ul(ng-repeat="lista in listToDelete")
+      li {{lista._id}} - {{lista.product_name}} 
+        a.btn.btn-warning.btn-xs(ng-click="restoreElement($index)" href="")  Cancelar
 
-    span.pd-1em
-      button.btn.btn-danger Eliminar todo
-
-    span.pd-1em(style="margin-top:1em;")
-      a.btn.btn-info(href="/")
-        i.glyphicon.glyphicon-chevron-left Atrás
+    button.btn.btn-danger(ng-click="confirm()") Eliminar Producto
+  
+  //span.alert.alert-info(data-ng-show="listaEliminadosVacia")
+    strong Lista vacía

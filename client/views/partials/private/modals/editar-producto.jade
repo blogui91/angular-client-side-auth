@@ -1,0 +1,42 @@
+.modal-header
+	h4
+		|Editar producto:
+.modal-body
+	
+	.row
+		.col-lg-2
+		.col-lg-3.col-md-4.col-sm-4.col-xs-12
+			.form-group
+				label(for="inputNombre")  Producto
+				input.form-control(type="text" id="inputNombre"  ng-model="productElement.product_name" placeholder="Nombre" )
+		.col-lg-3.col-md-4.col-sm-4.col-xs-6
+			.form-group
+				label(for="inputID") Precio
+				input.form-control(type="number" id="inputPrecio" ng-model="productElement.product_price" step="0.01" placeholder="Precio $")
+		.col-lg-3.col-md-4.col-sm-4.col-xs-6
+			.form-group
+				label(for="inputTipo") Tipo de Contenido
+				select.form-control(id="inputTipo" name="type_content" ng-model="productElement.product_type_content")
+					option(ng-repeat="option in tipo") {{option.name}}
+		.col-lg-1
+	.row
+		.col-lg-2
+		.col-lg-3.col-md-4.col-sm-4.col-xs-6
+			.form-group
+				label(for="inputStockMin") Stock Mínimo
+				input.form-control(type="number" min="1" max="200" ng-model="productElement.product_stock_min" id="inputStockMin")
+		.col-lg-3.col-md-4.col-sm-4.col-xs-6
+			.form-group
+				label(for="inputStockMax") Stock Máximo
+				input.form-control(type="number" min="2" max="300" ng-model="productElement.product_stock_max" id="inputStockMax" )
+		.col-lg-3.col-md-4.col-sm-4.col-xs-6
+			.form-group
+				label(for="inputExistencias") Inicializar Existencias
+				input.form-control(type="number" min="1" ng-model="productElement.product_units" id="inputExistencias")
+		.col-lg-1
+	
+
+
+.modal-footer
+	button.btn.btn-success(ng-click="ok()") Aceptar
+	button.btn.btn-danger(ng-click="cancel()") Cancelar

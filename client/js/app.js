@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
+angular.module('angular-client-side-auth', ['ngCookies', 'ui.router', 'ngDialog','ui.bootstrap'])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
@@ -68,7 +68,7 @@ angular.module('angular-client-side-auth', ['ngCookies', 'ui.router'])
         .state('user.agregar-producto', {
             url: '/agregar-producto/',
             templateUrl: 'private/inventario/agregar-producto',
-            controller: 'AgregarProductoCtrl'
+            controller: 'ProductoCtrl'
         })
         .state('user.agregar-proveedor', {
             url: '/agregar-proveedor/',

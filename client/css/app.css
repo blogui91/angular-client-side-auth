@@ -23,7 +23,8 @@ body {
     min-width: 75%;
     left: 50%;
     margin: 0 0 0 -37.5%;
-    top: 5px;
+    top: 37.5%;
+    z-index: 10000;
 }
 
 .fa.fa-twitter {
@@ -66,12 +67,22 @@ body {
   color:#fff!important;
 }
 
+
 @media (max-width:560px){
   .btn-atras{
     position:fixed;
-    top:-25px;
-    right:-5px;
-    z-index:100000;
+    bottom:30px;
+    left:37.5%;
+    z-index:10;
+  }
+
+  .btn-info-mobile{
+    height: 60px!important;
+    width: 60px!important;
+    border-radius: 50%!important;
+    background: rgba(0,138,183,0.7)!important;
+    line-height: 45px!important;
+    color:white;
   }
 
   
@@ -122,9 +133,6 @@ body {
 
 
 
- .pd-1em{
-   padding:1em!important;
- }
 
 
  #alertBox{
@@ -137,4 +145,55 @@ body {
   margin-bottom: 5px;
 }
 
+.controles{
+  margin-top: 1em;
+  padding: 0.5em;
+}
 
+.boton-atras{
+  position: fixed;
+  top:50%;
+  
+
+}
+
+
+.list-elements{
+  margin :0!important;
+  padding:0!important;
+}
+.list-elements li{
+  margin: 0.5em 0em;
+  list-style: none;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 0.2em;
+}
+
+
+.table-products tbody tr td{
+  text-align: center;
+}
+
+
+/*
+
+//$scope.removeDuplicate = function(){
+
+       for(var index in $scope.item.product_id){
+            for(var i in $scope.productList){
+                    console.log($scope.item.product_id[index] +' -- '+ $scope.productList[i]+' ?');
+                if($scope.item.product_id[index]._id === $scope.productList[i]._id){
+                    $scope.productList.slice(i,1);
+                    console.log('Producto repetido');
+                    console.log($scope.productList);
+                }
+            }
+        }
+    };
+    $scope.removeDuplicate ();
+
+
+
+
+*/

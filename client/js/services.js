@@ -93,6 +93,31 @@ angular.module('angular-client-side-auth')
         },
         deleteID: function(provider, success, error){
             $http.post('/deleteProveedores', provider).success(success).error(error);
+        },
+        edit: function(proveedor,success,error){
+            $http.post('/editProveedor', proveedor).success(success).error(error);
         }
+    };
+});
+
+angular.module('angular-client-side-auth')
+.factory('Products', function($http) {
+    return {
+        getAll: function(success, error) {
+            $http.get('/getProductos').success(success).error(error);
+        },
+        findID: function(producto, success, error){
+            $http.post('/findProducto', producto).success(success).error(error);
+        },
+        create: function(producto, success, error){
+            $http.post('/addProducto', producto).success(success).error(error);
+        },
+        deleteID: function(producto, success, error){
+            $http.post('/deleteProductos', producto).success(success).error(error);
+        },
+        edit: function(producto, success,error){
+            $http.post('/editProducto',producto).success(success).error(error);
+        }
+        
     };
 });

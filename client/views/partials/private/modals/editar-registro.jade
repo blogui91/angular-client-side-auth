@@ -1,0 +1,59 @@
+.modal-header
+	h4
+		| Editar Registro: {{item.provider_name}}
+.modal-body
+	
+	.row
+		.col-lg-3.col-md-3.col-sm-4
+			.form-group
+				label(for="inputID") ID
+				input.form-control(type="number" id="inputID" ng-model="item._id" disabled )
+		.col-lg-9.col-md-9.col-sm-8
+			.form-group
+				label(for="inputNombre") Nombre
+				input.form-control(type="text" id="inputNombre" ng-model="item.provider_name")
+	.row
+		.col-lg-8.col-md-8.col-sm-8
+			.form-group
+				label(for="inputAddress") Dirección
+				input.form-control(type="text" id="inputAddress" ng-model="item.provider_address")
+		.col-lg-4.col-md-4.col-sm-4
+			.form-group
+				label(for="inputTelephone") Telefono
+				input.form-control(type="number" id="inputTelephone"   ng-model="item.provider_telephone")
+	.row
+		.col-lg-4.col-md-4.col-sm-4
+			.form-group
+				label(for="inputRFC") RFC
+				input.form-control(type="text" id="inputRFC" ng-model="item.provider_rfc")
+		.col-lg-4.col-md-4.col-sm-4
+			.form-group
+				label(for="inputAgregarProducto") Agregar producto
+				select.form-control(id="inputRFC" ng-model="Newproduct" ng-change="addNewProduct(Newproduct)")
+					option(ng-repeat="list in productList") {{list.product_name}}
+	.row
+		.col-lg-6.col-md-6.col-sm-6.col-xs-6
+			.form-group
+				label(for="inputProductos") Productos
+				ul.list-elements
+					li(ng-repeat="items in item.product_id" ng-click="removeProductElement($index)") {{items._id}} - {{items.product_name}}
+						button.btn.btn-danger.btn-xs Eliminar
+		.col-lg-6.col-md-6.col-sm-6.col-xs-6
+			.form-group
+				label(for="inputProductos") Productos agregados
+				ul.list-elements
+					li(ng-repeat="items in newProductsList" ng-click="cancelAdding($index)") {{items._id}} - {{items.product_name}}
+						|      
+						button.btn.btn-warning.btn-xs Cancelar
+	.row
+		.col-lg-6.col-md-6.col-sm-6.col-xs-6
+			.form-group
+				label(for="inputProductos") Productos a eliminar
+				ul.list-elements
+					li(ng-repeat="items in listToDelete" ng-click="restoreProductElement($index)") {{items._id}} - {{items.product_name}}
+						|      
+						button.btn.btn-warning.btn-xs Restaurar
+
+.modal-footer
+	button.btn.btn-success(ng-click="ok()") Guardar
+	button.btn.btn-danger(ng-click="cancel()") Cancelar

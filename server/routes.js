@@ -1,14 +1,14 @@
-var _ =           require('underscore')
-    , path =      require('path')
-    , passport =  require('passport')
-    , AuthCtrl =  require('./controllers/auth')
-    , UserCtrl =  require('./controllers/user')
-    , categoryCtrl = require('./controllers/categoryCtrl')
-    , productCtrl = require('./controllers/productCtrl')
-    , providerCtrl = require('./controllers/providerCtrl')
-    , User =      require('./models/User.js')
-    , userRoles = require('../client/js/routingConfig').userRoles
-    , accessLevels = require('../client/js/routingConfig').accessLevels;
+var _           =           require('underscore')
+    , path      =      require('path')
+    , passport  =  require('passport')
+    , AuthCtrl  =  require('./controllers/auth')
+    , UserCtrl  =  require('./controllers/user')
+    , categoryCtrl  = require('./controllers/categoryCtrl')
+    , productCtrl   = require('./controllers/productCtrl')
+    , providerCtrl  = require('./controllers/providerCtrl')
+    , User          =      require('./models/User.js')
+    , userRoles     = require('../client/js/routingConfig').userRoles
+    , accessLevels  = require('../client/js/routingConfig').accessLevels;
 
 var routes = [
 
@@ -140,8 +140,35 @@ var routes = [
         httpMethod: 'POST',
         middleware: [providerCtrl.deleteProvider]
     },
-   
+    {
+        path: '/editProveedor',
+        httpMethod: 'POST',
+        middleware: [providerCtrl.editProvider]
+    },
+      
 
+   // Productos
+    {
+        path: '/getProductos',
+        httpMethod: 'GET',
+        middleware: [productCtrl.getProductos]
+    },
+   
+    {
+        path: '/addProducto',
+        httpMethod: 'POST',
+        middleware: [productCtrl.addProducto]
+    },
+    {
+        path: '/deleteProductos',
+        httpMethod: 'POST',
+        middleware: [productCtrl.deleteProducto]
+    },
+    {
+        path: '/editProducto',
+        httpMethod: 'POST',
+        middleware: [productCtrl.editProducto]
+    },
 // All other get requests should be handled by AngularJS's client-side routing system
     {
         path: '/*',

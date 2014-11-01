@@ -1,0 +1,16 @@
+.modal-header
+	h4
+		|Confirmar acción: {{typeAccion}} 
+.modal-body
+	div(data-ng-show="!empty")
+		h5
+			|Lista de productos
+		ul(ng-repeat="lista in deletedObjectList")
+			li {{lista._id}} - {{lista.product_name}}
+
+
+	span.alert.alert-info(data-ng-show="empty")
+		strong No hay elementos
+.modal-footer
+	button.btn.btn-success(ng-click="ok()") Aceptar
+	button.btn.btn-danger(ng-click="cancel()") Cancelar
